@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 2000,
     "height": 2000,
-    "scrollTop": 0,
-    "scrollLeft": 0,
+    "scrollTop": -567.6000135326394,
+    "scrollLeft": -285.2000067996979,
     "zoomLevel": 1,
     "show": {
       "tableComment": true,
@@ -233,9 +233,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1057.4003,
-          "top": 577.3945,
-          "zIndex": 332,
+          "left": 518.6003,
+          "top": 638.5945,
+          "zIndex": 25,
           "widthName": 80.78076171875,
           "widthComment": 60,
           "color": "#FFEB3B"
@@ -365,9 +365,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 547.4219,
-          "top": 653.3359,
-          "zIndex": 337,
+          "left": 1055.0219,
+          "top": 630.5359,
+          "zIndex": 26,
           "widthName": 60,
           "widthComment": 60,
           "color": "#8BC34A"
@@ -515,14 +515,14 @@
               "widthDataType": 60,
               "widthDefault": 60
             },
-            "id": "938bfa65-b908-4797-8d1b-b51c2524a19a"
+            "id": "06e35969-985e-4499-9ce5-461530368524"
           }
         ],
         "ui": {
           "active": false,
           "left": 1054.6169,
           "top": 1144.0354,
-          "zIndex": 339,
+          "zIndex": 23,
           "widthName": 60,
           "widthComment": 60,
           "color": "#03A9F4"
@@ -654,7 +654,7 @@
           "active": false,
           "left": 1048.6152,
           "top": 890.621,
-          "zIndex": 325,
+          "zIndex": 18,
           "widthName": 75.708984375,
           "widthComment": 60,
           "color": "#9C27B0"
@@ -782,30 +782,7 @@
             "id": "959c6be3-ce30-448d-aa81-ce6430c33d85"
           },
           {
-            "name": "subject",
-            "comment": "",
-            "dataType": "TEXT",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": false
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 60,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "f7491881-e873-43b6-9004-8efed173c0e3"
-          },
-          {
-            "name": "camera_ID",
+            "name": "pg_ID",
             "comment": "",
             "dataType": "INT",
             "default": "",
@@ -820,12 +797,12 @@
               "pk": false,
               "fk": true,
               "pfk": false,
-              "widthName": 65.578125,
+              "widthName": 60,
               "widthComment": 60,
               "widthDataType": 60,
               "widthDefault": 60
             },
-            "id": "237cbc0b-676b-4228-9d77-768569f6219a"
+            "id": "09ddf758-c886-4a13-a584-5ad87570fc6d"
           },
           {
             "name": "org_ID",
@@ -848,14 +825,14 @@
               "widthDataType": 60,
               "widthDefault": 60
             },
-            "id": "4a7afa11-5c2d-4677-a556-082f93d1014e"
+            "id": "867e90ec-9dc5-48d4-ab9f-6049f82ed636"
           }
         ],
         "ui": {
           "active": false,
-          "left": 538.8637,
-          "top": 976.9095,
-          "zIndex": 333,
+          "left": 513.6637,
+          "top": 988.9095,
+          "zIndex": 24,
           "widthName": 60,
           "widthComment": 60,
           "color": "#F44336"
@@ -880,18 +857,18 @@
           "columnIds": [
             "b75f2ff3-4082-4bad-8351-f798bf1f7818"
           ],
-          "x": 933.771509375,
-          "y": 739.0859,
-          "direction": "right"
+          "x": 1055.0219,
+          "y": 716.2859,
+          "direction": "left"
         },
         "end": {
           "tableId": "e2a8f762-d173-4063-8cd5-6e2ab9990d64",
           "columnIds": [
             "7edbf772-09ac-4547-99fb-e7ba89ced9d8"
           ],
-          "x": 1057.4003,
-          "y": 693.8945,
-          "direction": "left"
+          "x": 904.9372140625,
+          "y": 755.0945,
+          "direction": "right"
         },
         "constraintName": "fk_camera_to_photographer",
         "visible": true,
@@ -899,59 +876,33 @@
       },
       {
         "identification": false,
-        "relationshipType": "ZeroOne",
+        "relationshipType": "OneN",
         "startRelationshipType": "Dash",
         "start": {
-          "tableId": "99757e4c-8bdb-43ed-8a40-033737632cae",
+          "tableId": "e2a8f762-d173-4063-8cd5-6e2ab9990d64",
           "columnIds": [
-            "93ececea-262c-4f1f-97ca-2ea3094b1684"
+            "6a2481c6-5c15-4b0e-8915-78572560215e"
           ],
-          "x": 937.5150671875,
-          "y": 1151.6595,
-          "direction": "right"
-        },
-        "end": {
-          "tableId": "af5ceb68-e29d-456f-be70-966ce02fbaba",
-          "columnIds": [
-            "938bfa65-b908-4797-8d1b-b51c2524a19a"
-          ],
-          "x": 1054.6169,
-          "y": 1240.0354,
-          "direction": "left"
-        },
-        "constraintName": "fk_photo_to_award",
-        "visible": true,
-        "id": "22cd60f1-cb0e-4ae5-83a2-ab2fca94bf1d"
-      },
-      {
-        "identification": false,
-        "relationshipType": "ZeroN",
-        "startRelationshipType": "Dash",
-        "start": {
-          "tableId": "f1fe56c4-5dd7-4c60-9c7d-7b37564bc800",
-          "columnIds": [
-            "b75f2ff3-4082-4bad-8351-f798bf1f7818"
-          ],
-          "x": 740.5967046875,
-          "y": 824.8359,
+          "x": 711.76875703125,
+          "y": 871.5945,
           "direction": "bottom"
         },
         "end": {
           "tableId": "99757e4c-8bdb-43ed-8a40-033737632cae",
           "columnIds": [
-            "237cbc0b-676b-4228-9d77-768569f6219a"
+            "09ddf758-c886-4a13-a584-5ad87570fc6d"
           ],
-          "x": 738.18938359375,
-          "y": 976.9095,
+          "x": 712.98938359375,
+          "y": 988.9095,
           "direction": "top"
         },
-        "constraintName": "fk_camera_to_photo",
+        "constraintName": "fk_photographer_to_photo",
         "visible": true,
-        "id": "2ca66ad4-609f-49c1-9dc1-e8c08ce5a33a"
+        "id": "be5240ed-34cb-4cf8-b83b-434e3aa2a788"
       },
       {
         "identification": false,
-        "relationshipType": "OneOnly",
+        "relationshipType": "OneN",
         "startRelationshipType": "Dash",
         "start": {
           "tableId": "b52cd409-57e5-4099-b2f8-f5b0abb30a1d",
@@ -965,15 +916,41 @@
         "end": {
           "tableId": "99757e4c-8bdb-43ed-8a40-033737632cae",
           "columnIds": [
-            "4a7afa11-5c2d-4677-a556-082f93d1014e"
+            "867e90ec-9dc5-48d4-ab9f-6049f82ed636"
           ],
-          "x": 937.5150671875,
-          "y": 1035.1595,
+          "x": 912.3150671875,
+          "y": 1042.0345,
           "direction": "right"
         },
         "constraintName": "fk_organization_to_photo",
         "visible": true,
-        "id": "00d13263-99af-4b80-8f57-410eb3dae99b"
+        "id": "0a583c5b-df9e-45dc-8dff-d2e4fa853131"
+      },
+      {
+        "identification": false,
+        "relationshipType": "ZeroN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "99757e4c-8bdb-43ed-8a40-033737632cae",
+          "columnIds": [
+            "93ececea-262c-4f1f-97ca-2ea3094b1684"
+          ],
+          "x": 912.3150671875,
+          "y": 1148.2845,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "af5ceb68-e29d-456f-be70-966ce02fbaba",
+          "columnIds": [
+            "06e35969-985e-4499-9ce5-461530368524"
+          ],
+          "x": 1054.6169,
+          "y": 1240.0354,
+          "direction": "left"
+        },
+        "constraintName": "fk_photo_to_award",
+        "visible": true,
+        "id": "4bbb9e78-54e2-4b98-9826-6baec6577347"
       }
     ]
   }
