@@ -1,0 +1,29 @@
+.google{
+    text-decoration: none;
+    color: #000;
+}
+
+.wiki{
+    color: #000;
+    text-decoration: none;
+}
+
+.google:hover{
+    color: blue;
+}
+
+.wiki:hover{
+    color: blue;
+}
+
+.google:visited{
+    color: red;
+}
+
+.wiki:visited{
+    color: green;
+}
+
+.wiki:active, .google:active{
+    color: yellow;
+}
