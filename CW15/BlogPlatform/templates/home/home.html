@@ -23,13 +23,55 @@ Home
     </div>
 </nav>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md align-self-center mt-3" style="max-width: 85%;">
-            <img src="{% static 'assets/welcome.png' %}" class="img-fluid" >
-
+<!-- Page header with logo and tagline-->
+<header class="py-5 bg-light border-bottom mb-4">
+    <div class="container">
+        <div class="text-center my-5">
+            <h1 class="fw-bolder">Welcome to B.LOG Home!</h1>
+            <p class="lead mb-0">A blog homepage</p>
         </div>
     </div>
+</header>
 
-</div>
+        <!-- Page content-->
+        <div class="container">
+            <div class="row justify-content-between">
+                
+                <!-- Side widgets-->
+                    <!-- Search widget-->
+                    <div class="col-lg-5 card mb-4">
+                        <div class="card-header">Search</div>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- Categories widget-->
+                    <div class="col-lg-5 card mb-4">
+                        <div class="card-header">Categories</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="#!">Web Design</a></li>
+                                        <li><a href="#!">HTML</a></li>
+                                        <li><a href="#!">Freebies</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="#!">JavaScript</a></li>
+                                        <li><a href="#!">CSS</a></li>
+                                        <li><a href="#!">Tutorials</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+            </div>
+        </div>
 {% endblock %}
