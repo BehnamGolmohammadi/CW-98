@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'BlogApp.apps.BlogappConfig',
     'AuthorApp.apps.AuthorappConfig',
-    'PostApp.apps.PostappConfig',
     'CategoryApp.apps.CategoryappConfig',
 ]
 
