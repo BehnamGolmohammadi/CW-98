@@ -24,7 +24,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home),
+    path('', include("HomeApp.urls")),
     path('blog/', include("BlogApp.urls")),
 ]
 
