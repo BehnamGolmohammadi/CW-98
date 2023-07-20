@@ -5,42 +5,13 @@ Category
 
 {% block content %}
 
-<section>
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-md-12 col-xl-10">
-          <div class="card mask-custom table-responsive">
-            <div class="card-body p-4 text-white">
-              <div class="text-center pt-3 pb-2">
-                <h2 class="my-4">Category List</h2>
-              </div>
-
-              <table class="table text-white table-hover mb-0 table-customize bg-transparent">
-                <thead class="bg-transparent">
-                  <tr>
-                    <th scope="col">Name</th>
-                    
-                    <th scope="col"># of Tasks</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    {% for category in all_category %}
-                  <tr class="fw-normal">
-                    <th>
-                      <span>{{ category.name }}</span>
-                    </th>
-                    <td class="align-middle">
-                      <span>{{ category.get_task_count }}</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
-
-            </div>
-          </div>
-
-        </div>
+  <section class="containar vh-100 gradient-custom-2">
+      <div class="col-md">
+        {% if all_category %}
+        {% include 'category/categorylist.html' %}
+        {% elif single_task %}
+        {% include 'task/taskinfo.html' %}
+        {% endif %}
       </div>
     </div>
   </section>
