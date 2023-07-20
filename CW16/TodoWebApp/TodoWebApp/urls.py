@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', include('HomeApp.urls', namespace= 'HomeApp')),
     path('tasks/', include('TaskApp.urls', namespace= 'TaskApp')),
+    path('category/', include('Category.urls', namespace= 'CategoryApp')),
     path('admin/', admin.site.urls),
 ]
 
