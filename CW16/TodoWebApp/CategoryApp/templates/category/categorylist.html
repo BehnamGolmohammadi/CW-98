@@ -37,7 +37,9 @@
                     {% for category in all_category %}
                   <tr class="fw-normal">
                     <th>
-                      <span>{{ category.name }}</span>
+                      <a href="{% url 'category:categoryinfo' cat_id=category.id %}">
+                        <span>{{ category.name }}</span>
+                      </a>
                     </th>
                     <td class="align-middle">
                       <span>{{ category.get_task_count }}</span>
