@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'HomeApp.apps.HomeappConfig',
     'TaskApp.apps.TaskappConfig',
+    'CategoryApp.apps.CategoryappConfig',
 ]
 
 MIDDLEWARE = [
