@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Count
 
 # Create your models here.
 class Category(models.Model):
@@ -7,3 +8,6 @@ class Category(models.Model):
 
     def __str__(self) -> str:
         return f"{self.name}"
+
+    def get_task_count(self):
+        return self.task_set.count()
