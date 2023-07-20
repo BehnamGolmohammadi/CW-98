@@ -33,17 +33,22 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="fw-normal">
-                    <th>
-                      <span>School</span>
-                    </th>
-                    <td class="align-middle">
-                      <span>645</span>
-                    </td>
-                  </tr>
-                </tbody>
+                  {% for category in all_category %}
+                <tr class="fw-normal">
+                  <th>
+                    <span>{{ category.name }}</span>
+                  </th>
+                  <td class="align-middle">
+                    <span>{{ category.get_task_count }}</span>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
               </table>
-
+              <div class="d-grid gap-2 mt-2">
+                <a href="{% url 'task:index' %}" class="btn btn-light" type="button">See All</button>
+                  </a>
+              </div>
 
             </div>
           </div>
