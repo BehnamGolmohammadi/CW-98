@@ -3,7 +3,7 @@ from .models import Task
 
 # Create your views here.
 def all_task(request):
-    all_task = Task.objects.all().values()
+    all_task = Task.objects.all()
     return render(request, 'task/task.html', context= {'all_task': all_task})
 
 def task_detail(request, task_id):
