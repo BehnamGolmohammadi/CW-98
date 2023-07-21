@@ -7,7 +7,7 @@ Category
 
   <section class="containar vh-100 gradient-custom-2">
       <div class="col-md">
-        {% if all_category %}
+        {% if page_obj %}
         {% include 'category/categorylist.html' %}
         {% elif single_category %}
         {% include 'category/categoryinfo.html' %}
