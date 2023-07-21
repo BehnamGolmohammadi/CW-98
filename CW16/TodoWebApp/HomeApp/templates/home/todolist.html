@@ -43,7 +43,9 @@
                     </a>
                     </th>
                     <td class="align-middle">
+                    <a href="{% url 'category:categoryinfo' cat_id=task.category.id %}">
                       <span>{{ task.category }}</span>
+                    </a>
                     </td>
                     <td class="align-middle">
                       <span>{{ task.due_date }}</span>
