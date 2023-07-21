@@ -44,7 +44,9 @@
                 <div class="list-group-item list-group-item border-black border-1  " aria-current="">
                   <strong >Category:</strong>
                   <br>
+                  <a href="{% url 'category:categoryinfo' cat_id=single_task.category.id %}">
                   <span>{{single_task.category}}</span>
+                  </a>
                 </div>
                 <div class="list-group-item list-group-item border-black   " aria-current="">
                   <strong >Tags:</strong>
