@@ -7,7 +7,7 @@ Home
 
   <section class="containar vh-100 gradient-custom-2">
       <div class="col-md">
-        {% if all_task %}
+        {% if page_obj %}
         {% include 'task/tasklist.html' %}
         {% elif single_task %}
         {% include 'task/taskinfo.html' %}
