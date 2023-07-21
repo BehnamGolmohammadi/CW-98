@@ -93,3 +93,11 @@ def update_task(request, task_id):
                                                 'all_status':Task.status_choices,
                                                 'task_id': task_id 
                                                      })
+
+
+def delete_task(request, task_id):
+            
+      Task.objects.get(id=task_id).delete()
+      return redirect("/tasks")
+
+
