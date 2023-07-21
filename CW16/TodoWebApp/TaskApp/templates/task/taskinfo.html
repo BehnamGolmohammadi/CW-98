@@ -46,6 +46,11 @@
                   <br>
                   <span>{{single_task.category}}</span>
                 </div>
+                <div class="list-group-item list-group-item border-black   " aria-current="">
+                  <strong >Tags:</strong>
+                  <br>
+                  <span>{% for tag in single_task.tag.all %} {{tag}} {% endfor %}</span>
+                </div>
               </div>
 
 
