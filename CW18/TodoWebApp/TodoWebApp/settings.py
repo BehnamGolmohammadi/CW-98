@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'HomeApp.apps.HomeappConfig',
     'TaskApp.apps.TaskappConfig',
     'CategoryApp.apps.CategoryappConfig',
+    'UserApp.apps.UserappConfig',
 ]
 
 MIDDLEWARE = [
