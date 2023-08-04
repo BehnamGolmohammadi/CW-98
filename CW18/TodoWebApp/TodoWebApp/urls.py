@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('HomeApp.urls', namespace= 'HomeApp')),
     path('tasks/', include('TaskApp.urls', namespace= 'TaskApp')),
     path('category/', include('CategoryApp.urls', namespace= 'CategoryApp')),
+    path('user/', include('UserApp.urls', namespace= 'UserApp')),
     path('admin/', admin.site.urls),
 ]
 
