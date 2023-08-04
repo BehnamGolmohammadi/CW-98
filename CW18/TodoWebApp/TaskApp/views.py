@@ -33,6 +33,7 @@ def new_task(request):
             due_date = request.POST.get('due_date')
             status = request.POST.get('status')
             tag = request.POST.getlist('tag')
+            author = request.user
 
             # Create the task object
             task = Task.objects.create(
@@ -41,6 +42,7 @@ def new_task(request):
             description=description,
             due_date=due_date,
             status=status,
+            author = author
             )
             print(tag)
             for each_tag in tag:
