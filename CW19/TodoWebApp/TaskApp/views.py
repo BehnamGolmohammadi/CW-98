@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.views import View
 from .models import Task, Tag, Category
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
@@ -57,8 +58,16 @@ def new_task(request):
                                                    'all_status':Task.status_choices
                                                    })
 
-def update_task(request, task_id):
-      if request.method == "POST":
+class UpdateTask(View):
+      def get(self, request, task_id):
+            return render(request, 'task/task.html', {'update_task': 1,
+                                                      'all_category': Category.objects.all(),
+                                                      'all_tag': Tag.objects.all(),
+                                                      'all_status':Task.status_choices,
+                                                      'task_id': task_id 
+                                                           })
+      
+      def post(self, request, task_id):
             old_task = Task.objects.get(id=task_id)
             title = request.POST.get('title') or old_task.title
             category = Category.objects.get(id = request.POST.get('category')) or old_task.category
@@ -88,13 +97,6 @@ def update_task(request, task_id):
             old_task.first().save()
 
             return redirect("/")
-
-      return render(request, 'task/task.html', {'update_task': 1,
-                                                'all_category': Category.objects.all(),
-                                                'all_tag': Tag.objects.all(),
-                                                'all_status':Task.status_choices,
-                                                'task_id': task_id 
-                                                     })
 
 
 def delete_task(request, task_id):
