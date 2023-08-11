@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <section class="vh-100 bg-dark" >
+            <div class="container py-5 h-100">
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-12 col-xl-10">
+          
+                  <div class="card">
+                    <div class="card-header p-3">
+                      <h5 class="mb-0"><i class="fas fa-tasks me-2"></i>Task List</h5>
+                    </div>
+                    <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px">
+          
+                      <table class="table align-items-center mb-0">
+                        
+        
+                          <tr class="fw-normal align-items-center">
+                            <th scope="col">Task Title</th>
+                            <td>
+                              <span class="ms-0">{{task.title}}</span>
+                            </td>
+                          </tr>
+                          <tr class="fw-normal align-items-center">
+                            <th scope="col">Task Owner</th>
+                            <td class="align-middle">
+                              <span>{{task.user}}</span>
+                            </td>
+                            </tr>
+                          <tr class="fw-normal align-items-center">
+                            <th scope="col">Task is Completed</th>
+
+                            <td class="align-middle">
+                                {% if task.is_completed %}
+                              <h6 class="align-middle mb-0"><span class="badge bg-succuss">{{task.is_completed}}</span></h6>
+                                {% else %}
+                              <h6 class="align-middle mb-0"><span class="badge bg-danger">{{task.is_completed}}</span></h6>
+                                {% endif %}
+                            </td>
+                        </tr>
+                          <tr class="fw-normal align-items-center">
+                            <th scope="col">Task Description</th>
+                            
+                            <td class="align-middle">
+                                <span class="">{{task.description}}</span>
+                            </td>
+                            </tr>
+                          <tr class="fw-normal align-items-center">
+                            <th scope="col">Task created_at/th>
+                            <td class="align-middle">
+                                <span class="badge bg-info">{{task.created_at}}</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+          
+                    </div>
+                    <div class="card-footer text-end p-3">
+                      <button class="me-2 btn btn-link">Cancel</button>
+                      <button class="btn btn-primary">Add Task</button>
+                    </div>
+                  </div>
+          
+                </div>
+              </div>
+            </div>
+          </section>
+    </div>
+{% endblock %}
