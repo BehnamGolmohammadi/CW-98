@@ -2,12 +2,12 @@ from django.shortcuts import render, redirect
 from django.views import View
 from .models import Task, Tag, Category
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from .mixin import TodoOwnerRequiredMixin as TORM
+from .mixin import TodoOwnerRequiredMixin as TORM, AllTodoOwnerRequiredMixin as ATORM
 
 # Create your views here.
-class AllTask(View):
+class AllTask(ATORM, View):
       def get(self, request):
-            all_task = Task.objects.all()
+            all_task = self.Tasks
             pg = Paginator(all_task, 5)
             page_number = request.GET.get('page')
             try:
