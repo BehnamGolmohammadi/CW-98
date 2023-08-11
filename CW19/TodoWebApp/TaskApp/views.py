@@ -5,59 +5,58 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .mixin import TodoOwnerRequiredMixin as TORM
 
 # Create your views here.
-def all_task(request):
-    all_task = Task.objects.all()
-    pg = Paginator(all_task, 5)
-    page_number = request.GET.get('page')
-    try:
-          page_obj = pg.get_page(page_number)
-    except PageNotAnInteger:
-          page_obj = pg.page(1)
-    except EmptyPage:
-          page_obj = pg.page(pg.num_pages)
+class AllTask(View):
+      def get(request):
+            all_task = Task.objects.all()
+            pg = Paginator(all_task, 5)
+            page_number = request.GET.get('page')
+            try:
+                  page_obj = pg.get_page(page_number)
+            except PageNotAnInteger:
+                  page_obj = pg.page(1)
+            except EmptyPage:
+                  page_obj = pg.page(pg.num_pages)
+            
+            return render(request, 'task/task.html', context= {'page_obj': page_obj})
 
-    
-          
+class TaskDetail(TORM, View):
+      def get(request, task_id):
+            task = Task.objects.get(id=task_id)
+            return render(request, 'task/task.html', {'single_task': task})
 
-    return render(request, 'task/task.html', context= {'page_obj': page_obj})
+class NewTask(View):
+      def post(request):
+            if request.method == "POST":
+                  title = request.POST.get('title')
+                  category = request.POST.get('category')
+                  description = request.POST.get('description')
+                  due_date = request.POST.get('due_date')
+                  status = request.POST.get('status')
+                  tag = request.POST.getlist('tag')
+                  author = request.user
 
+                  # Create the task object
+                  task = Task.objects.create(
+                  title=title,
+                  category =Category.objects.get(id = category),
+                  description=description,
+                  due_date=due_date,
+                  status=status,
+                  author = author
+                  )
+                  print(tag)
+                  for each_tag in tag:
+                        tag_obj = Tag.objects.get(id = each_tag)
+                        task.tag.add(tag_obj)
+                  task.save()
 
-def task_detail(request, task_id):
-       task = Task.objects.get(id=task_id)
-       return render(request, 'task/task.html', {'single_task': task})
+                  return redirect("/")
 
-
-def new_task(request):
-      if request.method == "POST":
-            title = request.POST.get('title')
-            category = request.POST.get('category')
-            description = request.POST.get('description')
-            due_date = request.POST.get('due_date')
-            status = request.POST.get('status')
-            tag = request.POST.getlist('tag')
-            author = request.user
-
-            # Create the task object
-            task = Task.objects.create(
-            title=title,
-            category =Category.objects.get(id = category),
-            description=description,
-            due_date=due_date,
-            status=status,
-            author = author
-            )
-            print(tag)
-            for each_tag in tag:
-                  tag_obj = Tag.objects.get(id = each_tag)
-                  task.tag.add(tag_obj)
-            task.save()
-
-            return redirect("/")
-
-      return render(request, 'task/task.html', {'new_task': 1, 'all_category': Category.objects.all(),
-                                                 'all_tag': Tag.objects.all(),
-                                                   'all_status':Task.status_choices
-                                                   })
+      def get(request):
+            return render(request, 'task/task.html', {'new_task': 1, 'all_category': Category.objects.all(),
+                                                      'all_tag': Tag.objects.all(),
+                                                      'all_status':Task.status_choices
+                                                      })
 
 class UpdateTask(TORM, View):
       def get(self, request, task_id):
@@ -99,10 +98,9 @@ class UpdateTask(TORM, View):
 
             return redirect("/")
 
-
-def delete_task(request, task_id):
-            
-      Task.objects.get(id=task_id).delete()
-      return redirect("/tasks")
+class DeleteTask(View):
+      def get(request, task_id):
+            Task.objects.get(id=task_id).delete()
+            return redirect("/tasks")
 
 
