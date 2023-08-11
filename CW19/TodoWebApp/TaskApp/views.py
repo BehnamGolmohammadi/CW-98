@@ -6,7 +6,7 @@ from .mixin import TodoOwnerRequiredMixin as TORM
 
 # Create your views here.
 class AllTask(View):
-      def get(request):
+      def get(self, request):
             all_task = Task.objects.all()
             pg = Paginator(all_task, 5)
             page_number = request.GET.get('page')
@@ -20,12 +20,12 @@ class AllTask(View):
             return render(request, 'task/task.html', context= {'page_obj': page_obj})
 
 class TaskDetail(TORM, View):
-      def get(request, task_id):
+      def get(self, request, task_id):
             task = Task.objects.get(id=task_id)
             return render(request, 'task/task.html', {'single_task': task})
 
 class NewTask(View):
-      def post(request):
+      def post(self, request):
             if request.method == "POST":
                   title = request.POST.get('title')
                   category = request.POST.get('category')
@@ -52,7 +52,7 @@ class NewTask(View):
 
                   return redirect("/")
 
-      def get(request):
+      def get(self, request):
             return render(request, 'task/task.html', {'new_task': 1, 'all_category': Category.objects.all(),
                                                       'all_tag': Tag.objects.all(),
                                                       'all_status':Task.status_choices
@@ -99,7 +99,7 @@ class UpdateTask(TORM, View):
             return redirect("/")
 
 class DeleteTask(View):
-      def get(request, task_id):
+      def get(self, request, task_id):
             Task.objects.get(id=task_id).delete()
             return redirect("/tasks")
 
