@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title%}
+Home
+{% endblock %}
+
+{% block content %}
+
+<section class="containar vh-100 gradient-custom-2">
+  <div class="col-md">
+    {% if page_obj %}
+    {% include 'task/tasklist.html' %}
+    {% elif single_task %}
+    {% include 'task/taskinfo.html' %}
+    {% elif new_task %}
+    {% include 'task/create_task.html' %}
+    {% elif update_task %}
+    {% include 'task/update_task.html' %}
+    {% endif %}
+  </div>
+  </div>
+</section>
+{% endblock %}

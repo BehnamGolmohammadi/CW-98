@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'costum/css/todolist.css' %}">
+
+</head>
+
+<body>
+    <section>
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-12 col-xl-10">
+                    <div class="card mask-custom table-responsive">
+                        <div class="card-body p-4 text-white">
+                            <div class="text-center pt-3 pb-2">
+                                <h2 class="my-4">Update Task</h2>
+                            </div>
+
+                            <form action="{% url 'task:updatetask' task_id=task_id %}" method="post" >
+                                {% csrf_token %}
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="input">Title</label>
+                                        <input type="text" name="title" class="form-control" 
+                                            placeholder="Ex: Main Project">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Category</label>
+                                        <select class="form-control" name="category" >
+                                            <option selected>Choose a category</option>
+                                            {% for cat in all_category %}
+                                            <option value={{cat.id}}>{{cat}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="input">Description</label>
+                                    <textarea type="text" class="form-control" name="description"                              placeholder="Ex: Complete django project"></textarea>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Due Date</label>
+                                        <input type="datetime-local" class="form-control" name="due_date" >
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Status</label>
+                                        <select class="form-control" name="status" >
+                                            <option selected>Choose a status</option>
+                                            {% for status in all_status %}
+                                            <option value={{status.1}}>{{status.0}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Tags</label>
+                                    <select class="custom-select" name="tag" size="3" multiple>
+                                        {% for tag in all_tag %}
+                                        <option value={{tag.id}}>{{tag.id}}.{{tag}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Create Task</button>
+                            </form>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
