@@ -34,39 +34,39 @@ class TaskDetailView(TORM, DetailView):
       context_object_name = 'single_task'
 
       
-class NewTask(View):
-      def post(self, request):
-            if request.method == "POST":
-                  title = request.POST.get('title')
-                  category = request.POST.get('category')
-                  description = request.POST.get('description')
-                  due_date = request.POST.get('due_date')
-                  status = request.POST.get('status')
-                  tag = request.POST.getlist('tag')
-                  author = request.user
+# class NewTask(View):
+#       def post(self, request):
+#             if request.method == "POST":
+#                   title = request.POST.get('title')
+#                   category = request.POST.get('category')
+#                   description = request.POST.get('description')
+#                   due_date = request.POST.get('due_date')
+#                   status = request.POST.get('status')
+#                   tag = request.POST.getlist('tag')
+#                   author = request.user
 
-                  # Create the task object
-                  task = Task.objects.create(
-                  title=title,
-                  category =Category.objects.get(id = category),
-                  description=description,
-                  due_date=due_date,
-                  status=status,
-                  author = author
-                  )
-                  print(tag)
-                  for each_tag in tag:
-                        tag_obj = Tag.objects.get(id = each_tag)
-                        task.tag.add(tag_obj)
-                  task.save()
+#                   # Create the task object
+#                   task = Task.objects.create(
+#                   title=title,
+#                   category =Category.objects.get(id = category),
+#                   description=description,
+#                   due_date=due_date,
+#                   status=status,
+#                   author = author
+#                   )
+#                   print(tag)
+#                   for each_tag in tag:
+#                         tag_obj = Tag.objects.get(id = each_tag)
+#                         task.tag.add(tag_obj)
+#                   task.save()
 
-                  return redirect("/")
+#                   return redirect("/")
 
-      def get(self, request):
-            return render(request, 'task/task.html', {'new_task': 1, 'all_category': Category.objects.all(),
-                                                      'all_tag': Tag.objects.all(),
-                                                      'all_status':Task.status_choices
-                                                      })
+#       def get(self, request):
+#             return render(request, 'task/task.html', {'new_task': 1, 'all_category': Category.objects.all(),
+#                                                       'all_tag': Tag.objects.all(),
+#                                                       'all_status':Task.status_choices
+#                                                       })
       
 class NewTaskView(CreateView):
       model = Task
