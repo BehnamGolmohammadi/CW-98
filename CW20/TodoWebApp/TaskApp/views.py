@@ -1,6 +1,9 @@
+from typing import Any, Dict
+from django.forms.models import BaseModelForm
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import DetailView
+from django.views.generic import DetailView, CreateView
 from .models import Task, Tag, Category
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .mixin import TodoOwnerRequiredMixin as TORM, AllTodoOwnerRequiredMixin as ATORM
@@ -64,6 +67,24 @@ class NewTask(View):
                                                       'all_tag': Tag.objects.all(),
                                                       'all_status':Task.status_choices
                                                       })
+      
+class NewTaskView(CreateView):
+      model = Task
+      template_name = 'task/task.html'
+      fields = ['title', 'category', 'description', 'due_date', 'status', 'tag']
+      success_url = '/'
+      
+      def form_valid(self, form):
+            form.instance.author = self.request.user
+            return super().form_valid(form)
+      
+      def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+            context = super().get_context_data(**kwargs)
+            context['new_task'] = 1
+            context['all_category'] = Category.objects.all()
+            context['all_tag'] = Tag.objects.all()
+            context['all_status'] = Task.status_choices
+            return context
 
 class UpdateTask(TORM, View):
       def get(self, request, task_id):
