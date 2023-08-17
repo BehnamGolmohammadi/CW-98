@@ -39,7 +39,7 @@
                   {% for task in page_obj.object_list %}
                   <tr class="fw-normal">
                     <th>
-                      <a href="{% url 'task:taskinfo' task_id=task.id %}">
+                      <a href="{% url 'task:taskinfo' pk=task.id %}">
                         <span>{{ task.title }}</span>
                       </a>
                     </th>
