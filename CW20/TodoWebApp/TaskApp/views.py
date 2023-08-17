@@ -25,6 +25,11 @@ class TaskDetail(TORM, View):
             task = Task.objects.get(id=task_id)
             return render(request, 'task/task.html', {'single_task': task})
 
+class TaskDeatil(TORM, DetailView):
+      model = Task
+      template_name = 'task/task.html'
+      context_object_name = 'single_task'
+
 class NewTask(View):
       def post(self, request):
             if request.method == "POST":
