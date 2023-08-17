@@ -20,15 +20,18 @@ class AllTask(ATORM, View):
             
             return render(request, 'task/task.html', context= {'page_obj': page_obj})
 
-class TaskDetail(TORM, View):
-      def get(self, request, task_id):
-            task = Task.objects.get(id=task_id)
-            return render(request, 'task/task.html', {'single_task': task})
+# class TaskDetail(TORM, View):
+#       def get(self, request, task_id):
+#             task = Task.objects.get(id=task_id)
+#             return render(request, 'task/task.html', {'single_task': task})
 
-class TaskDeatil(TORM, DetailView):
+class TaskDetailView(TORM, DetailView):
       model = Task
       template_name = 'task/task.html'
-      context_object_name = 'single_task'
+      
+      def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            context['single_task'] = Task.objects.get(id = kwargs['task_id'])
 
 class NewTask(View):
       def post(self, request):
