@@ -3,7 +3,7 @@ from django.core.exceptions import PermissionDenied as PD
 
 class TodoOwnerRequiredMixin:
     def dispatch(self, request, *args, **kwargs):
-        task = Task.objects.get(id = kwargs['task_id'])
+        task = Task.objects.get(pk = kwargs['pk'])
         if not task.author == request.user:
             raise PD
         else:

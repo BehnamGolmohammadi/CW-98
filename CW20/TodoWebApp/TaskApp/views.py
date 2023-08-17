@@ -28,11 +28,9 @@ class AllTask(ATORM, View):
 class TaskDetailView(TORM, DetailView):
       model = Task
       template_name = 'task/task.html'
-      
-      def get_context_data(self, **kwargs):
-            context = super().get_context_data(**kwargs)
-            context['single_task'] = Task.objects.get(id = kwargs['task_id'])
+      context_object_name = 'single_task'
 
+      
 class NewTask(View):
       def post(self, request):
             if request.method == "POST":
