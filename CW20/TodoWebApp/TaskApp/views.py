@@ -129,7 +129,7 @@ class NewTaskView(CreateView):
 
 class UpdateTaskView(TORM, UpdateView):
       model = Task
-      template_name = 'task/update_task.html'
+      template_name = 'task/task.html'
       fields = ['title', 'category', 'description', 'due_date', 'status', 'tag']
       
       def get_success_url(self) -> str:
@@ -141,7 +141,7 @@ class UpdateTaskView(TORM, UpdateView):
       
       def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
             context = super().get_context_data(**kwargs)
-            context['new_task'] = 1
+            context['update_task'] = 1
             context['all_category'] = Category.objects.all()
             context['all_tag'] = Tag.objects.all()
             context['all_status'] = Task.status_choices
