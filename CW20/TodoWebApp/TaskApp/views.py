@@ -2,7 +2,7 @@ from typing import Any, Dict
 from django.forms.models import BaseModelForm
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import DetailView, CreateView, UpdateView
 from .models import Task, Tag, Category
@@ -73,7 +73,7 @@ class NewTaskView(CreateView):
       model = Task
       template_name = 'task/task.html'
       fields = ['title', 'category', 'description', 'due_date', 'status', 'tag']
-      success_url = reverse('home:index')
+      success_url = reverse_lazy('home:index')
       
       def form_valid(self, form):
             form.instance.author = self.request.user
@@ -87,52 +87,54 @@ class NewTaskView(CreateView):
             context['all_status'] = Task.status_choices
             return context
 
-class UpdateTask(TORM, View):
-      def get(self, request, task_id):
-            return render(request, 'task/task.html', {'update_task': 1,
-                                                      'all_category': Category.objects.all(),
-                                                      'all_tag': Tag.objects.all(),
-                                                      'all_status':Task.status_choices,
-                                                      'task_id': task_id 
-                                                           })
+# class UpdateTask(TORM, View):
+#       def get(self, request, task_id):
+#             return render(request, 'task/task.html', {'update_task': 1,
+#                                                       'all_category': Category.objects.all(),
+#                                                       'all_tag': Tag.objects.all(),
+#                                                       'all_status':Task.status_choices,
+#                                                       'task_id': task_id 
+#                                                            })
       
-      def post(self, request, task_id):
-            old_task = Task.objects.get(id=task_id)
-            title = request.POST.get('title') or old_task.title
-            category = Category.objects.get(id = request.POST.get('category')) or old_task.category
-            description = request.POST.get('description') or old_task.description
-            due_date = request.POST.get('due_date') or old_task.due_date
-            status = request.POST.get('status') or old_task.status
-            tag = request.POST.getlist('tag') or old_task.tag.all()
+#       def post(self, request, task_id):
+#             old_task = Task.objects.get(id=task_id)
+#             title = request.POST.get('title') or old_task.title
+#             category = Category.objects.get(id = request.POST.get('category')) or old_task.category
+#             description = request.POST.get('description') or old_task.description
+#             due_date = request.POST.get('due_date') or old_task.due_date
+#             status = request.POST.get('status') or old_task.status
+#             tag = request.POST.getlist('tag') or old_task.tag.all()
 
-            print(old_task, title, category, description, due_date, status, tag)
+#             print(old_task, title, category, description, due_date, status, tag)
 
-            # Create the task object
-            old_task = Task.objects.filter(id=task_id)
-            old_task.update(
-            title=title,
-            category =category ,
-            description=description,
-            due_date=due_date,
-            status=status,
-            )
+#             # Create the task object
+#             old_task = Task.objects.filter(id=task_id)
+#             old_task.update(
+#             title=title,
+#             category =category ,
+#             description=description,
+#             due_date=due_date,
+#             status=status,
+#             )
 
-            tag_list = []
-            for each_tag in tag:
-                  tag_obj = Tag.objects.get(id = each_tag)
-                  tag_list.append(tag_obj)
+#             tag_list = []
+#             for each_tag in tag:
+#                   tag_obj = Tag.objects.get(id = each_tag)
+#                   tag_list.append(tag_obj)
             
-            old_task.first().tag.set(tag_list)
-            old_task.first().save()
+#             old_task.first().tag.set(tag_list)
+#             old_task.first().save()
 
-            return redirect("/")
+#             return redirect("/")
 
 class UpdateTaskView(TORM, UpdateView):
       model = Task
-      template_name = 'task/task.html'
+      template_name = 'task/update_task.html'
       fields = ['title', 'category', 'description', 'due_date', 'status', 'tag']
-      success_url = reverse('home:index')
       
+      def get_success_url(self) -> str:
+            return reverse_lazy('task:taskinfo', kwargs={'pk': self.kwargs['pk']})
+
       def form_valid(self, form):
             form.instance.author = self.request.user
             return super().form_valid(form)
@@ -143,6 +145,7 @@ class UpdateTaskView(TORM, UpdateView):
             context['all_category'] = Category.objects.all()
             context['all_tag'] = Tag.objects.all()
             context['all_status'] = Task.status_choices
+            context['task_id'] = self.kwargs['pk']
             return context
 
 class DeleteTask(View):
