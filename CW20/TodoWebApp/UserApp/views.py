@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 from django.shortcuts import render, redirect
 from .forms import RegisterForm
 from django.contrib.auth.views import LoginView, LogoutView
@@ -24,7 +24,7 @@ def create_user(request):
 
     return render(request= request, template_name= 'user/user.html', context= context)
 
-class login_user(LoginView):
+class LoginUser(LoginView):
     redirect_authenticated_user = True
     template_name = 'user/user.html'
 
@@ -39,3 +39,6 @@ class login_user(LoginView):
         context = super().get_context_data(**kwargs)
         context['login_form'] = True
         return context
+
+class LogoutUser(LogoutView):
+    next_page = reverse_lazy('home:index')
